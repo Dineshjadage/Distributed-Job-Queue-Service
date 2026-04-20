@@ -1,185 +1,114 @@
-# 🚀 Distributed Job Queue Service (TCP-Based)
+# 🚀 Distributed Job Queue System (TCP-Based)
 
-## 📌 Overview
+**Developed by: Dinesh Jadage**
 
-This project implements a **Distributed Job Queue Service** using **TCP sockets in Python**.
-It follows a **Client–Server–Worker architecture**, where:
-
-* **Clients** submit jobs to the server
-* **Server** manages the job queue and distributes tasks
-* **Workers** fetch and execute jobs
-
-The system also measures **performance metrics** like:
-
-* Job submission time
-* Job selection time
-* Job completion time
+A multi-client, multi-worker distributed job queue system built using Python sockets and threading. This project simulates how job scheduling and processing systems work in real-world distributed environments.
 
 ---
 
-## 🏗️ Architecture
+## 📌 Features
 
-```
-Client(s)  --->  Server  --->  Worker(s)
-                (Queue Manager)
-```
+- 🔐 Secure authentication using SHA-256 hashing  
+- 🧑‍💻 Multiple clients can submit jobs concurrently  
+- ⚙️ Multiple workers can process jobs in parallel  
+- 📊 Real-time job status tracking (Pending / In Progress / Completed)  
+- ⏱ Automatic job timeout handling & re-queuing  
+- 🖥 GUI-based Client and Worker applications (Tkinter)  
+- 🚀 Bulk job submission support  
+
+---
+
+## 🏗 System Architecture
+
+        +-----------+        +-----------+
+        |  Client   | -----> |           |
+        | (GUI App) |        |           |
+        +-----------+        |           |
+                             |  Server   | -----> Workers
+        +-----------+        |           |        (GUI Apps)
+        |  Client   | -----> |           |
+        +-----------+        +-----------+
 
 ---
 
 ## 📂 Project Structure
 
-* `server.py` → Main server handling clients & workers 
-* `client.py` → Client for submitting jobs 
-* `worker.py` → Worker for fetching and processing jobs 
+├── server.py        # Central job queue server  
+├── client.py        # GUI client for submitting jobs  
+├── worker.py        # GUI worker for processing jobs  
 
 ---
 
-## ⚙️ Features
+## ⚙️ Technologies Used
 
-* Multi-client job submission
-* Multi-worker job processing
-* Thread-safe job queue (using locks)
-* Authentication system (`SECRET123`)
-* Performance evaluation (time tracking)
-* TCP socket-based communication
-
----
-
-## 🛠️ Requirements
-
-* Python 3.x
-* No external libraries required (uses built-in modules)
-
----
-
-## 💻 Installation & Setup
-
-### 🔹 Step 1: Clone the Repository
-
-```bash
-git clone https://github.com/Dineshjadage/Distributed-Job-Queue-Service.git
-cd Distributed-Job-Queue-Service
-```
-
----
-
-### 🔹 Step 2: Update IP Address
-
-In all files (`server.py`, `client.py`, `worker.py`), update:
-
-```python
-HOST = "YOUR_IP_ADDRESS"
-```
-
-👉 For same system:
-
-```python
-HOST = "127.0.0.1"
-```
-
----
-
-## 🚀 How to Run (Windows / Mac)
-
-### 🖥️ 1. Start Server
-
-```bash
-python server.py
-```
-
-Output:
-
-```
-Server running on port 5000
-```
-
----
-
-### 👤 2. Run Client
-
-```bash
-python client.py
-```
-
-Options:
-
-* Manual job entry
-* Auto-generate 100 jobs
-
----
-
-### ⚙️ 3. Run Worker(s)
-
-```bash
-python worker.py
-```
-
-Menu:
-
-```
-1. Show Jobs
-2. Accept Job
-3. Exit
-```
-
-👉 You can run multiple workers in different terminals
-
----
-
-## 📊 Performance Metrics
-
-The system measures:
-
-* ⏱️ Job submission time (client side)
-* ⏱️ Job fetching time (worker side)
-* ⏱️ Job completion time (server side)
-
-Example output:
-
-```
-Time to fetch jobs: 0.0023 seconds
-Job selection time: 0.0018 seconds
-Completion time: 0.0045 seconds
-```
+- Python 3  
+- Socket Programming (TCP)  
+- Multithreading  
+- Tkinter (GUI)  
+- UUID (Job IDs)  
+- Hashlib (Authentication Security)  
 
 ---
 
 ## 🔐 Authentication
 
-* Clients and workers must send:
-
-```
-CLIENT SECRET123
-WORKER SECRET123
-```
-
-* Unauthorized access is rejected
+- Uses SHA-256 hashing  
+- Shared secret key: `SECRET123`  
+- Both client and worker must authenticate before communication  
 
 ---
 
-## ⚠️ Notes
+## 🚀 How to Run the Project
 
-* Ensure server is running before client/worker
-* Use same IP & port across all files
-* Firewall/network settings may affect connectivity
+### 1️⃣ Clone Repository
+
+git clone https://github.com/your-username/job-queue-system.git  
+cd job-queue-system  
 
 ---
 
-## 🎯 Future Improvements
+### 2️⃣ Start Server
 
-* Job priority scheduling
-* Load balancing
-* Fault tolerance
-* Distributed deployment across multiple machines
+python server.py  
+
+---
+
+### 3️⃣ Run Client (Job Submission)
+
+python client.py  
+
+- Host: 127.0.0.1  
+- Port: 5000  
+
+---
+
+### 4️⃣ Run Worker (Job Processing)
+
+python worker.py  
+
+---
+
+## 🔄 Workflow
+
+1. Client submits job → Server stores it  
+2. Worker requests job → Server assigns job  
+3. Worker processes job → Marks DONE  
+4. Server logs completion time  
+
+---
+
+## 🧠 Key Concepts
+
+- Producer-Consumer Model  
+- Distributed Systems  
+- Thread Synchronization  
+- Socket Communication  
+- Fault Tolerance  
 
 ---
 
 ## 👨‍💻 Author
 
-**Dinesh Ashok Jadage**
-
----
-
-## 📜 License
-
-This project is for academic and learning purposes.
+Dinesh Jadage  
+GitHub: https://github.com/Dineshjadage  
+LinkedIn: https://www.linkedin.com/in/dinesh-jadage-b4ba5a320/
